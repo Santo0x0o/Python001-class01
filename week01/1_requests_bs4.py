@@ -16,7 +16,6 @@ for line in a.split(';'):  # 按照字符：进行划分读取
 
 
 header = {'user-agent': user_agent}
-
 myurl = 'https://maoyan.com/films?showType=3'
 
 response = requests.get(myurl, headers=header, cookies=cookies)
