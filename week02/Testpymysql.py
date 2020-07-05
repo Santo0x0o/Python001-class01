@@ -1,17 +1,18 @@
 import pymysql
 
-### TBD
+
 dbInfo = {
-    'host' : 'localhost',
-    'port' : 3306,
-    'user' : 'root',
-    'password' : 'TestFPy',
-    'db' : 'movies'
+    'host': 'localhost',
+    'port': 3306,
+    'user': 'root',
+    'password': 'TestFPy',
+    'db': 'movies'
 }
 
-sqls = ['select 1', 'select VERSION()']
+sqls = ['select 1', 'select VERSION()', 'select * from movies.maoyaninfo;']
 
 result = []
+
 
 class ConnDB(object):
     def __init__(self, dbInfo, sqls):
@@ -26,11 +27,11 @@ class ConnDB(object):
 
     def run(self):
         conn = pymysql.Connection(
-            host = self.host,
-            port = self.port,
-            user = self.user,
-            password = self.password,
-            db = self.db
+            host=self.host,
+            port=self.port,
+            user=self.user,
+            password=self.password,
+            db=self.db
         )
         # 游标建立的时候就开启了一个隐形的事物
         cur = conn.cursor()
@@ -45,6 +46,7 @@ class ConnDB(object):
             conn.rollback()
         # 关闭数据库连接
         conn.close()
+
 
 if __name__ == "__main__":
     db = ConnDB(dbInfo, sqls)

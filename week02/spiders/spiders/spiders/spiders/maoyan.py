@@ -7,8 +7,9 @@ from scrapy.selector import Selector
 class MaoyanSpider(scrapy.Spider):
     # define name of spider
     name = 'maoyan'
-    allowed_domains = ['maoyan.com','httpbin.org']
-    start_urls = ['https://maoyan.com/films?showType=3', 'http://httpbin.org/ip']
+    allowed_domains = ['maoyan.com', 'httpbin.org']
+    start_urls = ['https://maoyan.com/films?showType=3',
+                  'http://httpbin.org/ip']
     cookies = {}
     a = '__mta=220469159.1593148502368.1593148541623.1593148615270.9; uuid_n_v=v1; uuid=FA517ED0B76B11EA9B3075693A212BAF86111DE4D58A479B9C55DFCEF6A4E4AF; _csrf=ebf6ff89afbf5b791a2de53c842d221b5f100406beb141fbc73c5ca2e3e606e6; _lxsdk_cuid=172ef0ce8e7c8-06a45034ef70ec-f7d1d38-16e360-172ef0ce8e7c8; _lxsdk=FA517ED0B76B11EA9B3075693A212BAF86111DE4D58A479B9C55DFCEF6A4E4AF; mojo-uuid=6ebbd31b9ad2b20a9ca98ee8d16f0a4d; Hm_lvt_703e94591e87be68cc8da0da7cbd0be2=1593148500,1593446849; Hm_lpvt_703e94591e87be68cc8da0da7cbd0be2=1593879443; __mta=220469159.1593148502368.1593148615270.1593879443669.10; _lxsdk_s=1731ad818e4-155-aa3-8d4%7C%7C1'
     for line in a.split(';'):  # 按照字符：进行划分读取
@@ -71,7 +72,8 @@ class MaoyanSpider(scrapy.Spider):
         try:
             # Selector
             print('parse2')
-            movies = Selector(response=response).xpath('//div[@class="movie-hover-info"]')
+            movies = Selector(response=response).xpath(
+                '//div[@class="movie-hover-info"]')
             # print(len(movies))
             # 切片限定爬取数量Top10
             for movie in movies[0:10]:
