@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from spiders.items import SpidersItem
 from scrapy.selector import Selector
 
+
 class MaoyanSpider(scrapy.Spider):
     # define name of spider
     name = 'maoyan'
@@ -28,6 +29,7 @@ class MaoyanSpider(scrapy.Spider):
 
 
 # 整理获取到的类型字符串
+
 
     def type_text(self, typestring):
         updated = typestring.strip().split('\n')[-1].strip()
@@ -61,9 +63,10 @@ class MaoyanSpider(scrapy.Spider):
 
 # 用Selector解析
     def parse2(self, response):
-        #Selector
+        # Selector
         print('parse2')
-        movies = Selector(response=response).xpath('//div[@class="movie-hover-info"]')
+        movies = Selector(response=response).xwpath(
+            '//div[@class="movie-hover-info"]')
         # print(len(movies))
         # 切片限定爬取数量Top10
         for movie in movies[0:10]:
@@ -71,9 +74,11 @@ class MaoyanSpider(scrapy.Spider):
             # print(movie)
             movie_title = movie.xpath('./div[1]/@title').extract_first()
             # print(movie_title)
-            movie_type = movie.xpath('./div[2]/text()[2]').extract_first().strip()
+            movie_type = movie.xpath(
+                './div[2]/text()[2]').extract_first().strip()
             # print(movie_type)
-            movie_showtime = movie.xpath('./div[4]/text()[2]').extract_first().strip()
+            movie_showtime = movie.xpath(
+                './div[4]/text()[2]').extract_first().strip()
             # print(movie_showtime)
             item['mtitle'] = movie_title
             item['mtype'] = movie_type
