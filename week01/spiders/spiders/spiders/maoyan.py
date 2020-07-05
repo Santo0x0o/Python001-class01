@@ -65,8 +65,7 @@ class MaoyanSpider(scrapy.Spider):
     def parse2(self, response):
         # Selector
         print('parse2')
-        movies = Selector(response=response).xwpath(
-            '//div[@class="movie-hover-info"]')
+        movies = Selector(response=response).xpath('//div[@class="movie-hover-info"]')
         # print(len(movies))
         # 切片限定爬取数量Top10
         for movie in movies[0:10]:
