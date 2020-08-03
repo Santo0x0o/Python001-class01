@@ -26,5 +26,8 @@ def books_short(request):
     condtions = {'sentiment__lt': 0.5}
     minus = queryset.filter(**condtions).count()
 
+    # 过滤星级大于3的短评记录
+    shorts_sgt3 = T1.objects.filter(n_star__gt=3).values('id', 'n_star', 'short', 'sentiment')
+
     return render(request, 'douban.html', locals())
     # return render(request, 'result.html', locals())

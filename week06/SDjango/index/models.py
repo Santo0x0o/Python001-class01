@@ -12,5 +12,3 @@ class Name(models.Model):
     name = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     stars = models.CharField(max_length=5)
-
-

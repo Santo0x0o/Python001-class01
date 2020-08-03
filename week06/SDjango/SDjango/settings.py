@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     # Add customized app
     'index',
     'douban',
-
 ]
 
 MIDDLEWARE = [

@@ -4,8 +4,10 @@
     <title>Books</title>
 </head>
 <body>
-
-{% for short in shorts %}
+<h2>
+    短评星级超过三星（不包含三星）的如下：
+</h2>
+{% for short in shorts_sgt3 %}
     <div>ID: {{ short.id }}   <br>
            Short: {{ short.short }} <br>
            stars:  {{ short.n_star }}  <br>
