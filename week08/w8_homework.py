@@ -6,9 +6,6 @@
 
 
 # Homework2
-
-
-
 def new_map(func, arglist):
     for i in arglist:
         yield func(i)
