@@ -7,16 +7,18 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .form import LoginForm
 from django.contrib.auth import authenticate, login
 
+
 def userlogin(request):
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
             # 读取表单的返回值
-            cd = login_form.cleaned_data 
-            user = authenticate(username=cd['username'], password=cd['password'])
+            cd = login_form.cleaned_data
+            user = authenticate(
+                username=cd['username'], password=cd['password'])
             if user:
                 # 登陆用户
-                login(request, user)  
+                login(request, user)
                 return HttpResponseRedirect('https://u.geekbang.org/')
             else:
                 return HttpResponse('登录失败，用户名密码错误')
